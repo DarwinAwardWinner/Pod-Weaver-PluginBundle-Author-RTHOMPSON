@@ -3,26 +3,102 @@ use warnings;
 use utf8;
 
 package Pod::Weaver::PluginBundle::RTHOMPSON;
-# ABSTRACT: [1-line description of module]
+# ABSTRACT: A bundle that implements RTHOMPSON's preferred L<Pod::Weaver> config
 
-# [MODULE IMPLEMENTATION GOES HERE]
+use namespace::autoclean;
+
+use Pod::Weaver::Config::Assembler;
+sub _exp { Pod::Weaver::Config::Assembler->expand_package($_[0]) }
+
+=for Pod::Coverage mvp_bundle_config
+
+=cut
+
+sub mvp_bundle_config {
+  return (
+    [ '@RTHOMPSON/CorePrep',     _exp('@CorePrep'),    {} ],
+    [ '@RTHOMPSON/Name',         _exp('Name'),         {} ],
+    [ '@RTHOMPSON/Version',      _exp('Version'),      {} ],
+
+    [ '@RTHOMPSON/prelude',      _exp('Region'),       { region_name => 'prelude'  } ],
+    [ 'SYNOPSIS',                _exp('Generic'),      {} ],
+    [ 'OVERVIEW',                _exp('Generic'),      {} ],
+    [ 'DESCRIPTION',             _exp('Generic'),      {} ],
+
+    [ 'ATTRIBUTES',              _exp('Collect'),      { command => 'attr'     } ],
+    [ 'OPTIONS',                 _exp('Collect'),      { command => 'option'   } ],
+    [ 'METHODS',                 _exp('Collect'),      { command => 'method'   } ],
+    [ 'FUNCTIONS',               _exp('Collect'),      { command => 'function' } ],
+
+    [ '@RTHOMPSON/Leftovers',    _exp('Leftovers'),    {} ],
+
+    [ '@RTHOMPSON/postlude',     _exp('Region'),       { region_name => 'postlude' } ],
+
+    [ '@RTHOMPSON/Installation', _exp('Installation'), {} ],
+    [ '@RTHOMPSON/Authors',      _exp('Authors'),      {} ],
+    [ '@RTHOMPSON/Legal',        _exp('Legal'),        {} ],
+    [ '@RTHOMPSON/WarrantyDisclaimer', _exp('WarrantyDisclaimer'), {} ],
+
+    [ '@RTHOMPSON/-Transformer', _exp('-Transformer'), { transformer => 'List' } ],
+    [ '@RTHOMPSON-EnsureUniqueSections', _exp('-EnsureUniqueSections'), {} ],
+ );
+}
 
 1; # Magic true value required at end of module
 __END__
 
 =head1 SYNOPSIS
 
-    use Pod::Weaver::PluginBundle::RTHOMPSON;
+In F<weaver.ini>:
 
-    [Sample usage of module]
+    [@RTHOMPSON]
 
-=head1 DESCRIPTION
+=head1 OVERVIEW
 
-[EXPLAIN]
+This is the bundle used by RTHOMPSON when using L<Pod::Weaver> to
+generate documentation for Perl modules.
+
+It is nearly equivalent to the following:
+
+    [@CorePrep]
+
+    [Name]
+    [Version]
+
+    [Region / prelude]
+
+    [Generic / SYNOPSIS]
+    [Generic / OVERVIEW]
+    [Generic / DESCRIPTION]
+
+    [Collect / ATTRIBUTES]
+    command = attr
+
+    [Collect / OPTIONS]
+    command = option
+
+    [Collect / METHODS]
+    command = method
+
+    [Collect / FUNCTIONS]
+    command = function
+
+    [Leftovers]
+
+    [Region / postlude]
+
+    [Installation]
+
+    [Authors]
+    [Legal]
+    [WarrantyDisclaimer]
+
+    [-Transformer]
+    transformer = List
+
+    [-EnsureUniqueSections]
 
 =head1 BUGS AND LIMITATIONS
-
-[KNOWN BUGS]
 
 Please report any bugs or feature requests to
 C<rct+perlbug@thompsonclan.org>.
@@ -30,27 +106,4 @@ C<rct+perlbug@thompsonclan.org>.
 =head1 SEE ALSO
 
 =for :list
-[* L<Related::Module> - How it is related]
-
-=head1 DISCLAIMER OF WARRANTY
-
-BECAUSE THIS SOFTWARE IS LICENSED FREE OF CHARGE, THERE IS NO WARRANTY
-FOR THE SOFTWARE, TO THE EXTENT PERMITTED BY APPLICABLE LAW. EXCEPT WHEN
-OTHERWISE STATED IN WRITING THE COPYRIGHT HOLDERS AND/OR OTHER PARTIES
-PROVIDE THE SOFTWARE "AS IS" WITHOUT WARRANTY OF ANY KIND, EITHER
-EXPRESSED OR IMPLIED, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED
-WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE. THE
-ENTIRE RISK AS TO THE QUALITY AND PERFORMANCE OF THE SOFTWARE IS WITH
-YOU. SHOULD THE SOFTWARE PROVE DEFECTIVE, YOU ASSUME THE COST OF ALL
-NECESSARY SERVICING, REPAIR, OR CORRECTION.
-
-IN NO EVENT UNLESS REQUIRED BY APPLICABLE LAW OR AGREED TO IN WRITING
-WILL ANY COPYRIGHT HOLDER, OR ANY OTHER PARTY WHO MAY MODIFY AND/OR
-REDISTRIBUTE THE SOFTWARE AS PERMITTED BY THE ABOVE LICENCE, BE
-LIABLE TO YOU FOR DAMAGES, INCLUDING ANY GENERAL, SPECIAL, INCIDENTAL,
-OR CONSEQUENTIAL DAMAGES ARISING OUT OF THE USE OR INABILITY TO USE
-THE SOFTWARE (INCLUDING BUT NOT LIMITED TO LOSS OF DATA OR DATA BEING
-RENDERED INACCURATE OR LOSSES SUSTAINED BY YOU OR THIRD PARTIES OR A
-FAILURE OF THE SOFTWARE TO OPERATE WITH ANY OTHER SOFTWARE), EVEN IF
-SUCH HOLDER OR OTHER PARTY HAS BEEN ADVISED OF THE POSSIBILITY OF
-SUCH DAMAGES.
+* L<Pod::Weaver>
