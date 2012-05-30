@@ -6,7 +6,7 @@ Pod::Weaver::PluginBundle::RTHOMPSON - A bundle that implements RTHOMPSON's pref
 
 =head1 VERSION
 
-version 0.103510
+version 0.121510
 
 =head1 SYNOPSIS
 
