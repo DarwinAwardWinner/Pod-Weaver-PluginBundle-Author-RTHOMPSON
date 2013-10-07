@@ -1,6 +1,8 @@
 Revision history for Perl extension {{$dist->name}}
 
 {{$NEXT}}
+
+0.132800  2013-10-07 16:32:11 America/Los_Angeles
     - Rename to [@Author::RTHOMPSON]
 
 0.121510  2012-05-29 17:21:47 America/Los_Angeles
