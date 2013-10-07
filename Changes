@@ -1,6 +1,7 @@
 Revision history for Perl extension {{$dist->name}}
 
 {{$NEXT}}
+    - Rename to [@Author::RTHOMPSON]
 
 0.121510  2012-05-29 17:21:47 America/Los_Angeles
     - Declare proper dependencies

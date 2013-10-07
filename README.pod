@@ -2,17 +2,17 @@
 
 =head1 NAME
 
-Pod::Weaver::PluginBundle::RTHOMPSON - A bundle that implements RTHOMPSON's preferred L<Pod::Weaver> config
+Pod::Weaver::PluginBundle::Author::RTHOMPSON - A bundle that implements RTHOMPSON's preferred L<Pod::Weaver> config
 
 =head1 VERSION
 
-version 0.121510
+version 0.132800
 
 =head1 SYNOPSIS
 
 In F<weaver.ini>:
 
-    [@RTHOMPSON]
+    [@Author::RTHOMPSON]
 
 =head1 OVERVIEW
 
