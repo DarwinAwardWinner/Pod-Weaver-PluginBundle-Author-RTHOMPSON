@@ -1,6 +1,8 @@
 Revision history for Perl extension {{$dist->name}}
 
 {{$NEXT}}
+
+0.132960  2013-10-23 14:44:40 America/Los_Angeles
     - Add missing dependency on Pod::Elemental::Transformer::List
     - Add basic load test (00-load.t)
 
