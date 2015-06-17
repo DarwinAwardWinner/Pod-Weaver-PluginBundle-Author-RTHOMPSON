@@ -40,7 +40,7 @@ sub mvp_bundle_config {
     [ '@Author::RTHOMPSON/WarrantyDisclaimer', _exp('WarrantyDisclaimer'), {} ],
 
     [ '@Author::RTHOMPSON/-Transformer', _exp('-Transformer'), { transformer => 'List' } ],
-    [ '@Author::RTHOMPSON-EnsureUniqueSections', _exp('-EnsureUniqueSections'), {} ],
+    [ '@Author::RTHOMPSON/-EnsureUniqueSections', _exp('-EnsureUniqueSections'), {} ],
  );
 }
 
